@@ -12,11 +12,20 @@ public class Depto {
     private Long id;
     private String nombre;
     private String ubicacion;
+    
+    public Depto(){
+        
+    }
 
     public Depto(Long id, String nombre, String ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
+    }
+
+    public Depto(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
     }
 
     public Long getId() {
@@ -42,6 +51,12 @@ public class Depto {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
     
     
 }

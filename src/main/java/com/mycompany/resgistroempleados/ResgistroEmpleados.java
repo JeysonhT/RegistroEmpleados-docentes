@@ -4,6 +4,8 @@
 
 package com.mycompany.resgistroempleados;
 
+import Vista.Registro;
+
 /**
  *
  * @author jason
@@ -11,6 +13,8 @@ package com.mycompany.resgistroempleados;
 public class ResgistroEmpleados {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Registro ventana = new Registro();
+        ventana.setVisible(true);
+               
     }
 }

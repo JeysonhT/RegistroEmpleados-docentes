@@ -14,6 +14,10 @@ public class Docente {
     private String nombre;
     private String apellido;
     private String cedula;
+    
+    public Docente(){
+        
+    }
 
     public Docente(Long id, Long id_depto, String nombre, String apellido, String cedula) {
         this.id = id;

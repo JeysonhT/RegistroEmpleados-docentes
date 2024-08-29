@@ -1,4 +1,8 @@
-C:\Users\jason\OneDrive\Documentos\NetBeansProjects\ResgistroEmpleados\src\main\java\Modelo\Depto.java
-C:\Users\jason\OneDrive\Documentos\NetBeansProjects\ResgistroEmpleados\src\main\java\Modelo\Docente.java
-C:\Users\jason\OneDrive\Documentos\NetBeansProjects\ResgistroEmpleados\src\main\java\Vista\Registro.java
-C:\Users\jason\OneDrive\Documentos\NetBeansProjects\ResgistroEmpleados\src\main\java\com\mycompany\resgistroempleados\ResgistroEmpleados.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\Modelo\Docente.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\Utils\AtomicId.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\ModeloConexion\Conexion.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\Modelo\Depto.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\Modelo\DaoDepto.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\Vista\Registro.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\com\mycompany\resgistroempleados\ResgistroEmpleados.java
+C:\Users\jason\OneDrive\Documentos\NetBeansProjects\RegistroEmpleados\src\main\java\Modelo\DaoDocente.java

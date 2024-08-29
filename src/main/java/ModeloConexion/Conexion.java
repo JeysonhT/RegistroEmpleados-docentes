@@ -36,7 +36,7 @@ public class Conexion {
     private void conectarDB() {
         FileInputStream serviceAccount = null;
         try {
-            File file = new File("path/to/credentials");
+            File file = new File("C:\\Users\\jason\\OneDrive\\Documentos\\Secrets\\registroempleados-42086-firebase-adminsdk-ht3rk-7954a3a647.json");
             if (!file.exists()) {
                 System.out.println("El archivo no existe");
                 return;
@@ -48,7 +48,6 @@ public class Conexion {
                 @SuppressWarnings("deprecation")
                 FirebaseOptions options = new FirebaseOptions.Builder()
                         .setCredentials(credentials)
-                        .setDatabaseUrl("Url_database")
                         .build();
 
                 FirebaseApp.initializeApp(options);

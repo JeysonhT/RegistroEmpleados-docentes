@@ -4,29 +4,85 @@
  */
 package Vista;
 
+import Modelo.DaoDepto;
+import Modelo.DaoDocente;
 import Modelo.Depto;
+import Modelo.Docente;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jason
  */
 public class Registro extends javax.swing.JFrame {
+    
+    private DefaultTableModel tableModel;
 
     /**
      * Creates new form Registro
      */
     public Registro() {
         initComponents();
+        
+        ObtenerDatosDepto();
+        
+        ObtenerDatos();
+        
+        tableModel = (DefaultTableModel) tableDocentes.getModel();
+    }
+    
+    private void ObtenerDatos() {
+        List<Docente> docentes = new DaoDocente().getDocentes();
+        DefaultTableModel modelo = new DefaultTableModel();
+        String[] columnas = {"id", "id_departamento", "Nombre", "Apellido", "cedula"};
+        modelo.setColumnIdentifiers(columnas);
+        
+        for(Docente d: docentes){
+            String[] renglon ={d.getId().toString(), 
+                d.getId_depto().toString(),
+                d.getNombre(),
+                d.getApellido(),
+                d.getCedula()};
+            
+            modelo.addRow(renglon);
+        }
+        tableDocentes.setModel(modelo);
+    }
+    
+    private void GuardarDatos() throws InterruptedException{
+        
+        try {
+            long id_depto = comboDepto.getItemAt(comboDepto.getSelectedIndex())
+                    .getId();
+            
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+            String cedula = txtCedula.getText();
+            
+            Docente docente = new Docente(id_depto, nombre, apellido, cedula);
+            
+            DaoDocente dao = new DaoDocente();
+            dao.saveDocente(docente);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ObtenerDatos();
     }
     
-    public void ObtenerDatos(){
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String cedula = txtCedula.getText();
+    private void ObtenerDatosDepto(){
+        List<Depto> departamentos = new DaoDepto().getDepto();
+        for(int i = 0; i<departamentos.size(); i++){
+            System.out.println(departamentos.get(i).toString());
+            comboDepto.addItem(new Depto(departamentos.get(i).getId(),
+                    departamentos.get(i).getNombre()));
+        }
         
-        String id_depto = comboDepto.getItemAt(comboDepto.getSelectedIndex())
-                .getId().toString();
     }
 
     /**
@@ -64,6 +120,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel4.setText("Departamento");
 
         btbGuardar.setText("Guardar");
+        btbGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btbGuardarMouseClicked(evt);
+            }
+        });
 
         tableDocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,40 +203,18 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btbGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btbGuardarMouseClicked
+        try {
+            GuardarDatos();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btbGuardarMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registro().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btbGuardar;
@@ -191,4 +230,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
+    
 }

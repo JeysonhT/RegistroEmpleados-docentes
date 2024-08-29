@@ -31,7 +31,8 @@ public class DaoDepto {
             List<QueryDocumentSnapshot> documents = future.get().getDocuments();
             
             for(QueryDocumentSnapshot d : documents){
-                departamentos.add(d.toObject(Depto.class));
+                departamentos.add(new Depto(d.getLong("Id"), d.getString("Nombre"),
+                        d.getString("Ubicacion")));
             }
             
             return departamentos;

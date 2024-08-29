@@ -34,7 +34,11 @@ public class DaoDocente {
             List<QueryDocumentSnapshot> document = future.get().getDocuments();
             
             for(QueryDocumentSnapshot d : document){
-                docentes.add(d.toObject(Docente.class));
+                docentes.add(new Docente(d.getLong("id"), 
+                        d.getLong("id_depto"),
+                        d.getString("nombre"),
+                        d.getString("apellido"),
+                        d.getString("cedula")));
             }
             
             return docentes;
@@ -47,6 +51,8 @@ public class DaoDocente {
     
     public String saveDocente(Docente docente) throws InterruptedException, ExecutionException{
         Long id = AtomicId.IdUnicoGenerado();
+        
+        docente.setId(id);
         
         DocumentReference docRef = db.collection("Docentes")
                 .document(String.valueOf(id));
