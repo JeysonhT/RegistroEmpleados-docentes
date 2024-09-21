@@ -31,6 +31,8 @@ public class DaoDocente {
         List<Docente> docentes = new ArrayList<>();
         
         try{
+            
+            
             List<QueryDocumentSnapshot> document = future.get().getDocuments();
             
             for(QueryDocumentSnapshot d : document){
@@ -40,6 +42,7 @@ public class DaoDocente {
                         d.getString("apellido"),
                         d.getString("cedula")));
             }
+            AtomicId id = new AtomicId(Long.parseLong(String.valueOf(docentes.size())));
             
             return docentes;
         } catch (InterruptedException | ExecutionException ex){

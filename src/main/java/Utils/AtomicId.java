@@ -11,7 +11,11 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author jason
  */
 public class AtomicId {
-    private static AtomicLong idCounter = new AtomicLong(0);
+    
+    public AtomicId(Long _id){
+        AtomicId.idCounter = new AtomicLong(_id);
+    }
+    private static AtomicLong idCounter ;
     
     public static Long IdUnicoGenerado(){
         return idCounter.incrementAndGet();

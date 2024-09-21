@@ -43,6 +43,8 @@ public class Registro extends javax.swing.JFrame {
         String[] columnas = {"id", "id_departamento", "Nombre", "Apellido", "cedula"};
         modelo.setColumnIdentifiers(columnas);
         
+        
+        
         for(Docente d: docentes){
             String[] renglon ={d.getId().toString(), 
                 d.getId_depto().toString(),
